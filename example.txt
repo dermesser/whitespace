@@ -1,0 +1,13 @@
+Hello,
+		
+World.
+	
+This file
+    
+contains whitespace errors.
+					
+That is if
+
+there's a tab or some spaces
+	   
+in a line which is actually empty.
