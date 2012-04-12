@@ -7,7 +7,8 @@ use File::Copy;
 
 die("Usage: whitespace.pl <FILE>\n") if scalar @ARGV == 0;
 
-my $pat = qr/^(\t| )+$/;
+my $pat_emptyline = qr/^(\t| )+$/;
+my $pat_endofline = qr/^(.+?)( |\t)+$/;
 
 foreach my $actual_file (@ARGV)
 {
@@ -20,10 +21,13 @@ foreach my $actual_file (@ARGV)
 	{
 		$i++;
 
-		if ( $line =~ $pat )
+		if ( $line =~ $pat_emptyline )
 		{
 			#print $i." ".$line;
 			print $tempfile "\n";
+		} elsif ( $line =~ $pat_endofline )
+		{
+			print $tempfile $1 . "\n";
 		} else
 		{
 			print $tempfile $line;

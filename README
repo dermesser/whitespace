@@ -4,6 +4,8 @@ A whitespace error is:
 	- tabs in an (else) empty line
 	- spaces in an empty line
 	- or both
+	- whitespaces before the newline character
+
 Whitespace errors are created when working with a auto-indent
 text editor like vim or some IDEs. This script removes the errors from
 the file. The clean file is written back to the original file.

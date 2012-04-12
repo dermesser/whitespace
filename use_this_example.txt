@@ -1,10 +1,10 @@
-Hello,
+Hello, 
 		
-World.
+World.			
 	
-This file
+This file  	
     
-contains whitespace errors.
+contains whitespace errors.	  
 					
 That is if
 
