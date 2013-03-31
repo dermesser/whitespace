@@ -12,32 +12,33 @@ my $pat_endofline = qr/^(.+?)( |\t)+$/;
 
 foreach my $actual_file (@ARGV)
 {
-	open(my $tempfile,">",".white_tmp");
-	open(my $file,"<",$actual_file);
+    next if -d $actual_file;
+    open(my $tempfile,">",".white_tmp");
+    open(my $file,"<",$actual_file);
 
-	my $i = 0;
+    my $i = 0;
 
-	while ( my $line = <$file> )
+    while ( my $line = <$file> )
+    {
+	$i++;
+
+	if ( $line =~ $pat_emptyline )
 	{
-		$i++;
-
-		if ( $line =~ $pat_emptyline )
-		{
-			#print $i." ".$line;
-			print $tempfile "\n";
-		} elsif ( $line =~ $pat_endofline )
-		{
-			print $tempfile $1 . "\n";
-		} else
-		{
-			print $tempfile $line;
-		}
+	    #print $i." ".$line;
+	    print $tempfile "\n";
+	} elsif ( $line =~ $pat_endofline )
+	{
+	    print $tempfile $1 . "\n";
+	} else
+	{
+	    print $tempfile $line;
 	}
+    }
 
-	close($file);
-	close($tempfile);
+    close($file);
+    close($tempfile);
 
-	copy(".white_tmp",$actual_file);
+    copy(".white_tmp",$actual_file);
 
-	unlink(".white_tmp");
+    unlink(".white_tmp");
 }
